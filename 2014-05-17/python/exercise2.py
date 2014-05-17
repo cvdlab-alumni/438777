@@ -14,6 +14,21 @@ from sysml import *
 from architectural import *
 from splines import *
 
+""" progressive refinement of a block diagram """
+from pyplasm import *
+from scipy import *
+import os,sys
+""" import modules from larcc/lib """
+sys.path.insert(0, 'C:\Python27\Lib\site-packages\larcc\lib\py')
+from lar2psm import *
+from simplexn import *
+from larcc import *
+from largrid import *
+from mapper import *
+from boolean import *
+from sysml import *
+from architectural import *
+
 DRAW = COMP([VIEW,STRUCT,MKPOLS])
 
 shape =[9,7,2]
@@ -22,147 +37,85 @@ master = assemblyDiagramInit(shape)(sizePattern)
 V,CV = master
 hpc = SKEL_1(STRUCT(MKPOLS(master)))
 hpc = cellNumbering (master,hpc)(range(len(CV)),YELLOW,1)
-#VIEW(hpc)
 
 toRemove = [17,19,21,25,45,49,51,53,73,87,107,77,91,101,81,109,105,101]
 master = V,[cell for k,cell in enumerate(CV) if not (k in toRemove)]
-#DRAW(master)
-
-#hpc = SKEL_1(STRUCT(MKPOLS(master)))
-#hpc = cellNumbering (master,hpc)(range(len(master[1])),YELLOW,1)
-#VIEW(hpc)
 
 toMerge=39
 p1 = assemblyDiagramInit([3,1,2])([[0.3,0.6,0.3],[.3],[1.5,1]])
 master = diagram2cell(p1,master,toMerge)
-#hpc = SKEL_1(STRUCT(MKPOLS(master)))
-#hpc = cellNumbering (master,hpc)(range(len(master[1])),YELLOW,1)
-#VIEW(hpc)
 
 toRemove = [110]
 master = master[0], [cell for k,cell in enumerate(master[1]) if not (k in toRemove)]
-#DRAW(master)
-
-#hpc = SKEL_1(STRUCT(MKPOLS(master)))
-#hpc = cellNumbering (master,hpc)(range(len(master[1])),YELLOW,1)
-#VIEW(hpc)
 
 toMerge=3
 f1 = assemblyDiagramInit([1,3,3])([[.3],[.2,.4,.2],[1.2,.6,.9]])
 master = diagram2cell(f1,master,toMerge)
-#hpc = SKEL_1(STRUCT(MKPOLS(master)))
-#hpc = cellNumbering (master,hpc)(range(len(master[1])),YELLOW,0.25)
-#VIEW(hpc)
 
 toMerge=6
 f2 = assemblyDiagramInit([1,3,3])([[.3],[.2,.4,.2],[1.2,.6,.9]])
 master = diagram2cell(f2,master,toMerge)
-#hpc = SKEL_1(STRUCT(MKPOLS(master)))
-#hpc = cellNumbering (master,hpc)(range(len(master[1])),YELLOW,0.25)
-#VIEW(hpc)
 
 toMerge=9
 f3 = assemblyDiagramInit([1,3,3])([[.3],[.4,.4,.4],[1.2,.6,.9]])
 master = diagram2cell(f3,master,toMerge)
-#hpc = SKEL_1(STRUCT(MKPOLS(master)))
-#hpc = cellNumbering (master,hpc)(range(len(master[1])),YELLOW,0.25)
-#VIEW(hpc)
 
 toRemove = [114,123,132]
 master = master[0], [cell for k,cell in enumerate(master[1]) if not (k in toRemove)]
-#DRAW(master)
 
 toMerge=20
 f4 = assemblyDiagramInit([3,1,3])([[.7,.4,.7],[.3],[1.2,.6,.9]])
 master = diagram2cell(f4,master,toMerge)
-#hpc = SKEL_1(STRUCT(MKPOLS(master)))
-#hpc = cellNumbering (master,hpc)(range(len(master[1])),YELLOW,0.25)
-#VIEW(hpc)
 
 toMerge=42
 f5 = assemblyDiagramInit([3,1,3])([[.4,.4,.4],[.3],[1.2,.6,.9]])
 master = diagram2cell(f5,master,toMerge)
-#hpc = SKEL_1(STRUCT(MKPOLS(master)))
-#hpc = cellNumbering (master,hpc)(range(len(master[1])),YELLOW,0.25)
-#VIEW(hpc)
 
 toMerge=66
 f6 = assemblyDiagramInit([3,1,3])([[.3,.3,.3],[.3],[1.2,.6,.9]])
 master = diagram2cell(f6,master,toMerge)
-#hpc = SKEL_1(STRUCT(MKPOLS(master)))
-#hpc = cellNumbering (master,hpc)(range(len(master[1])),YELLOW,0.25)
-#VIEW(hpc)
 
 toMerge=87
 f7 = assemblyDiagramInit([3,1,3])([[.2,.3,.2],[.3],[1.2,.6,.9]])
 master = diagram2cell(f7,master,toMerge)
-#hpc = SKEL_1(STRUCT(MKPOLS(master)))
-#hpc = cellNumbering (master,hpc)(range(len(master[1])),YELLOW,0.25)
-#VIEW(hpc)
 
 toRemove = [134,143,152,161]
 master = master[0], [cell for k,cell in enumerate(master[1]) if not (k in toRemove)]
-#DRAW(master)
 
 toMerge=90
 f8 = assemblyDiagramInit([1,3,3])([[.3],[.2,.4,.2],[1.2,.6,.9]])
 master = diagram2cell(f8,master,toMerge)
-#hpc = SKEL_1(STRUCT(MKPOLS(master)))
-#hpc = cellNumbering (master,hpc)(range(len(master[1])),YELLOW,0.25)
-#VIEW(hpc)
 
 toRemove = [165]
 master = master[0], [cell for k,cell in enumerate(master[1]) if not (k in toRemove)]
-#DRAW(master)
 
 toMerge=37
 p2 = assemblyDiagramInit([3,1,2])([[.3,.6,.3],[.3],[1.5,1]])
 master = diagram2cell(p2,master,toMerge)
-#hpc = SKEL_1(STRUCT(MKPOLS(master)))
-#hpc = cellNumbering (master,hpc)(range(len(master[1])),YELLOW,0.25)
-#VIEW(hpc)
 
 toMerge=31
 p3 = assemblyDiagramInit([1,3,2])([[.3],[.3,.6,.3],[1.5,1]])
 master = diagram2cell(p3,master,toMerge)
-#hpc = SKEL_1(STRUCT(MKPOLS(master)))
-#hpc = cellNumbering (master,hpc)(range(len(master[1])),YELLOW,0.25)
-#VIEW(hpc)
 
 toMerge=23
 p4 = assemblyDiagramInit([1,3,2])([[.3],[.1,.6,.1],[1.5,1]])
 master = diagram2cell(p4,master,toMerge)
-#hpc = SKEL_1(STRUCT(MKPOLS(master)))
-#hpc = cellNumbering (master,hpc)(range(len(master[1])),YELLOW,0.25)
-#VIEW(hpc)
 
 toMerge=26
 p5 = assemblyDiagramInit([1,3,2])([[.3],[.1,.6,.1],[1.5,1]])
 master = diagram2cell(p5,master,toMerge)
-#hpc = SKEL_1(STRUCT(MKPOLS(master)))
-#hpc = cellNumbering (master,hpc)(range(len(master[1])),YELLOW,0.25)
-#VIEW(hpc)
 
 toMerge=41
 p6 = assemblyDiagramInit([1,3,2])([[.3],[.1,.6,.1],[1.5,1]])
 master = diagram2cell(p6,master,toMerge)
-#hpc = SKEL_1(STRUCT(MKPOLS(master)))
-#hpc = cellNumbering (master,hpc)(range(len(master[1])),YELLOW,0.25)
-#VIEW(hpc)
 
 toMerge=44
 p7 = assemblyDiagramInit([1,3,2])([[.3],[.1,.6,.1],[1.5,1]])
 master = diagram2cell(p7,master,toMerge)
-#hpc = SKEL_1(STRUCT(MKPOLS(master)))
-#hpc = cellNumbering (master,hpc)(range(len(master[1])),YELLOW,0.25)
-#VIEW(hpc)
 
 toMerge=47
 p8 = assemblyDiagramInit([1,3,2])([[.3],[.2,.6,.4],[1.5,1]])
 master = diagram2cell(p8,master,toMerge)
-#hpc = SKEL_1(STRUCT(MKPOLS(master)))
-#hpc = cellNumbering (master,hpc)(range(len(master[1])),YELLOW,0.25)
-#VIEW(hpc)
 
 toRemove = [164,176,188,182,170,200,194]
 master = master[0], [cell for k,cell in enumerate(master[1]) if not (k in toRemove)]
@@ -189,18 +142,11 @@ palazzo = diagram2cell(master,palazzo,6)
 palazzo = diagram2cell(master,palazzo,5)
 palazzo = diagram2cell(master,palazzo,4)
 
-#hpc = SKEL_1(STRUCT(MKPOLS(palazzo)))
-#hpc = cellNumbering (palazzo,hpc)(range(len(CV)),YELLOW,1)
-#VIEW(hpc)
-
 toRemove = [31,27,23,19,15,11,7,3]
 palazzo = palazzo[0],[cell for k,cell in enumerate(palazzo[1]) if not (k in toRemove)]
 hpc = STRUCT(MKPOLS(palazzo))
-#VIEW(hpc)
-#DRAW(palazzo)
 
 palazzo=(T(3)(2)(hpc))
-#VIEW(palazzo)
 
 c1=CYLINDER([0.4,2])(40)
 c1=T([1,2])([.3,.3])(c1)
@@ -231,10 +177,8 @@ c13=CYLINDER([0.4,2])(40)
 c13=T([1,2])([4.3,.3])(c13)
 
 pilastri=STRUCT([c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,c11,c12,c13])
-#VIEW(pilastri)
 
 assembly1=STRUCT([COLOR([1,0.8,0.6])(palazzo),COLOR([0.804,0.361,0.361])(pilastri)])
-#VIEW(STRUCT([palazzo,pilastri]))
 
 controls11 = [[.3,.3],[1.2,-.3],[.3,-1.8]]
 bezier11 = BEZIER(S1)(controls11)
@@ -277,12 +221,10 @@ bezier5 = BEZIER(S1)(controls5)
 base=MAP(BEZIER(S2)([bezier6,bezier5]))(POWER([INTERVALS(1)(30),INTERVALS(1)(30)]))
 
 assembly2=STRUCT([T(3)(0.01)(COLOR([0.09,0.51,0.27])(base1))]+[T(3)(0.01)(COLOR([0.09,0.51,0.27])(base2))]+[T(3)(0.01)(COLOR([0.09,0.51,0.27])(base3))]+[T(3)(0.01)(COLOR([0.09,0.51,0.27])(base4))]+[COLOR([0,0.66,0.42])(base)]+[assembly1])
-#VIEW(assembly2)
 
 scala=STRUCT(MKPOLS(spiralStair(0.1)))
 scala=T([1,2])([6,0])(COLOR([0.804,0.361,0.361])(scala))
 portaPrincipale=T([1,2,3])([6.25,-0.01,2])(COLOR([0.804,0.361,0.361])(CUBOID([1,.3,2.5])))
-#VIEW(scala)
 
 tronco=COLOR([0.588,0.294,0])(CYLINDER([0.2,6])(40))
 chioma=COLOR([0.133,0.545,0.133,100])(T(3)(6)((SPHERE(1)([20,20]))))
