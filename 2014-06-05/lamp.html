@@ -38,10 +38,8 @@
 		 camera.up = new THREE.Vector3(0,1,0);
 		 camera.lookAt(scene.position);
 
-		 //per muovere la figura
 		 var trackballControls = new THREE.TrackballControls(camera);
 
-		 // add subtle ambient lighting
 		 var ambiColor = "#0c0c0c";
 		 var ambientLight = new THREE.AmbientLight(ambiColor);
 		 ambientLight.castShadow = true;
@@ -83,16 +81,11 @@
 		   return joint;
 		 }
 
-		 // create the ground plane
 		 var planeGeometry = new THREE.PlaneGeometry(250,400,400,400);
 		 var planeMaterial =  new THREE.MeshPhongMaterial({color: "#90EE90"});
 		 var plane = new THREE.Mesh(planeGeometry,planeMaterial);
 		 plane.receiveShadow = true;
-
-		 // rotate and position the plane
 		 plane.rotation.x=-0.5*Math.PI;
-		 
-		 // add the plane to the scene
 		 scene.add(plane);
 
 	     var bench = new THREE.Object3D();
@@ -111,7 +104,6 @@
 		 var baseBench1 = new THREE.Mesh(baseBench1Geometry, baseBench1Material);
 		 baseBench1.position.set(-4,-4,0);
 		 baseBench1.castShadow = true;
-		 //scene.add(sphere3);
 		 sittingBench.add(baseBench1);
 
 		 var baseBench2Geometry = new THREE.SphereGeometry(2, 40, 40);
@@ -195,16 +187,16 @@
 		   this.angle = 0.1;
 		   this.debug = false;
 
-		   this.showTrackballHelper = true;
-		   this.showAxisHelper = true;
+		   this.trackballOn_trackballOff = true;
+		   this.axisOn_axisOff = true;
 		   this.lightOn_lightOff = true;
 
 		   this.goAnimation_backToStart = false;
 		 };
 
 		 var gui = new dat.GUI() 
-		 var track_control = gui.add(controls, 'showTrackballHelper');
-		 var axis_control = gui.add(controls, 'showAxisHelper');
+		 var track_control = gui.add(controls, 'trackballOn_trackballOff');
+		 var axis_control = gui.add(controls, 'axisOn_axisOff');
 		 var light_control = gui.add(controls, 'lightOn_lightOff');
 		 var animation_control = gui.add(controls, 'goAnimation_backToStart');
 
@@ -347,20 +339,16 @@
 		 text.castShadow = true;
 		 scene.add(text);
 
-		 // add the output of the renderer to the html element
 		 $('body').append(renderer.domElement);
 		 render();
 
 		 function render() {
-		   //per muovere la figura
 		   trackballControls.update();
 		   TWEEN.update();
-
-		   // render using requestAnimationFrame
 		   requestAnimationFrame(render);
 		   renderer.render(scene, camera);
-			 }
-	      });
+		}
+	});
 	</script>
 	</body>
 	</html>
